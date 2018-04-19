@@ -22,7 +22,7 @@ int main()
         return 0;
     }
 
-    cout<<"Socket created successfully fd=!!"<<cfd<<endl;
+    cout<<"Socket created successfully fd= "<<cfd<<endl;
    
     client_addr.sin_family=AF_INET;
     client_addr.sin_addr.s_addr=inet_addr(DEST_IP);
@@ -34,8 +34,10 @@ int main()
    {
        perror("Connect failed ..:(");
    }
-
-   cout<<"Connected to server .. :)\n";
+    else
+    {
+        cout<<"Connected to server .. :)\n";
+    }
 
 
     return 0;
