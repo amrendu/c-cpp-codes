@@ -3,9 +3,13 @@
 #include<stdlib.h>
 #include<sys/socket.h>
 #include<netinet/in.h>
-using namespace std;
+#include<pthread.h>
 #define PORT 8888
+#define BUFF_SIZE 512
+using namespace std;
 
+
+void startConvo(int fd);
 /*
 Server implementation of network socket */
 int main()
@@ -56,8 +60,39 @@ int main()
         else
         {
             cout<<"Connected to client with fd "<<cfd<<endl;
+            startConvo(cfd);
         }
     }
 
     return 0;
 }
+
+void * rcvThread(void *fd)
+{
+    char rcvbuff[BUFF_SIZE];
+    int *fd1=(int *)fd;
+    while(1)
+    {
+        recv(*fd1,rcvbuff,BUFF_SIZE,0);
+        cout<<"FROM CLIENT :"<<rcvbuff<<endl;
+    }
+}
+
+void startConvo(int fd)
+{
+    pthread_t tid;
+    pthread_create(&tid,NULL,rcvThread,(void *)&fd);
+    cout<<"Convo started... \n";
+    while(1)
+    {
+        char sendbuff[BUFF_SIZE];
+        cin>>sendbuff;
+        send(fd,sendbuff,BUFF_SIZE,0);
+        //cout<<"ME :"<<sendbuff<<endl;
+       
+    }
+
+}
+
+
+
