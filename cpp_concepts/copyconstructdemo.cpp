@@ -3,6 +3,15 @@
 
 using namespace std;
 
+/*
+When should we use copy constructor ?
+ 
+    If we do not define copy constructor, default copy constructor will be called , however default constructor do shallow copy.
+    user defined copy constructor can do deep copy.
+
+
+*/
+
 class myClass
 {
     int a,b;

@@ -4,6 +4,7 @@
 #include<sys/socket.h>
 #include<netinet/in.h>
 #include<pthread.h>
+#include<unistd.h>
 #define PORT 8888
 #define BUFF_SIZE 512
 using namespace std;
@@ -52,6 +53,7 @@ int main()
     {
         cout<<"waiting for client connection...\n";
         cfd=accept(sfd,(struct sockaddr *)&client_addr,&clientLen);
+	close(sfd);
         if(rc <-1)
         {
             perror("accept failed ");
