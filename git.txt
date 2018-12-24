@@ -1,0 +1,8 @@
+Git
+----
+
+1) Install git -> sudo apt-get install git
+2) Add remote repo -> git remote add git@github.com:amrendu/c-cpp-codes.git
+3) Generate ssh keys ->  ssh-keygen -t rsa -C "amrendukumar@gmail.com"
+4) Add it to git setting -> Add contents of  ~/.ssh/id_rsa.pub to github account
+5) git pull origin master
